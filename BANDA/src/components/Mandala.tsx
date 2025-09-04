@@ -8,7 +8,7 @@ import MyModalComponent from './MyModal';
 import { MandalaDAO, type MandalartInsertData, type MandalaChartInsert, type CoreGoalInsert, type SubGoalInsert } from './Dao';
 
 
-const API_KEY = "AIzaSyBh6a4SerekVaEaoKABD__ZLbGkfl3JTLI";
+const API_KEY = "";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
 
 export interface MandalartData {

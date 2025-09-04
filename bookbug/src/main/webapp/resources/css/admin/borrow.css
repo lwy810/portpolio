@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+
+/*========== banner ==========*/
+.bn-book-borrow, 
+.bn-borrow-list,
+.bn-borrow-member {background:url(../../imgs/support/light1.jpg) no-repeat center center;}
+
+.bn-book-borrow h2, 
+.bn-borrow-list h2,
+.bn-borrow-member h2 {text-shadow:2px 2px 1px #333; font-weight:lighter;}
+
+.bn-book-borrow span, 
+.bn-borrow-list span,
+.bn-borrow-member span {font-weight:700;}
+
+section {width:100vw; margin:0 auto;}
+
+/*========== searchbox ==========*/
+.searchbox {width:400px; margin:50px auto 0;}
+.searchbox input {width:56%; padding:10px 15px; }
+.searchbox select {padding:10px 12px;}
+
+
+/*=========== borrow register ===========*/
+.borrow-wrap {width:750px;padding:20px; margin:30px auto 100px; background:#e8e0ae;;}
+.borrow-wrap table {width:100%; border-spacing:0;}
+.borrow-wrap table tr td:nth-child(1) {width:13%; margin:5px 0 5px 5px;}
+.borrow-wrap table tr td:nth-child(2) {width:60%; margin:5px 0 5px 5px;}
+.borrow-wrap table tr td:nth-child(2) input {width:98%; padding:10px 5px; margin:5px 0 5px 5px;}
+.borrow-wrap table tr td:nth-child(3) button {width:90%; margin:5px;}
+.borrow-wrap table tr td:first-child {width:17%; padding:5px 10px;}
+.borrow-wrap table tr td label {padding:0 10px;}
+.borrow-wrap table tr td input {
+	width:100%; padding:5px; margin:5px 0 5px 5px; 
+	border:0; outline:0;
+}
+.borrow-wrap table tr:last-child td:first-child button {width:100%; margin:0 auto;}
+
+
+/*=========== borrow reg-member ===========*/
+.reg-member-msg {
+	width:100%; padding:5px 10px; color:#c9b161;
+	border:1px solid #c9b161; font-size:14px; text-align:center;
+}
+.reg-find-member {width:83%; list-style:none;}
+.reg-find-member li {
+	display:flex; justify-content:space-between; align-items:center;
+	height:40px; margin:10px 0;
+}
+.reg-find-member li input {width:63%; height:100%; padding:10px 15px; border:1px solid #c9b161; outline:0;}
+.reg-find-member li button {
+	padding:10px 15px; border:0; line-height:21px; 
+	background:#e2d89c; cursor:pointer;
+}
+.reg-find-member li button:hover {background:#f3e8cb; cursor:pointer;}
+.member-wrap {
+	width:100%; margin:0 auto; font-size:12px;
+	text-align:center; 
+}
+.member-wrap table {
+	width:85%; padding:5px; margin:0 auto;
+	font-size:12px; border-spacing:0; background:#f3e8cb;
+}
+.member-wrap table tr th {text-align:center; border-bottom:1px dashed #333; background:#e2d89c; }
+.member-wrap table tr td {padding:3px 5px; border-bottom:1px solid #333; text-align:center; }
+
+/*=========== borrow reg-book ===========*/
+.reg-book-msg {
+	width:100%; padding:5px 10px; color:#c9b161;
+	border:1px solid #c9b161; font-size:14px; text-align:center;
+}
+.reg-find-book {width:83%; list-style:none;}
+.reg-find-book li {
+	display:flex; justify-content:space-between; align-items:center;
+	height:40px; margin:10px 0;
+}
+.reg-find-book li input {width:68%; height:100%; padding:10px 15px; border:1px solid #c9b161; outline:0;}
+.reg-find-book li button {
+	padding:10px 15px; border:0; line-height:21px; 
+	background:#e2d89c; cursor:pointer;
+}
+.reg-find-book li button:hover {background:#f3e8cb; cursor:pointer;}
+.book-wrap {
+	width:100%; margin:0 auto; font-size:12px;
+	text-align:center; 
+}
+.book-wrap table {
+	width:85%; padding:5px; margin:0 auto;
+	font-size:12px; border-spacing:0; background:#f3e8cb;
+}
+.book-wrap table tr th {text-align:center; border-bottom:1px dashed #333; background:#e2d89c; }
+.book-wrap table tr td {padding:3px 5px; border-bottom:1px solid #333; text-align:center; }
+
+
+
+
+
+/*========== list ==========*/
+h3 {font-family:"SUIT-Regular"; margin:50px 0; text-align:center;}
+
+
+.mb-borrow-list {width:1300px; padding:0; margin:0 auto 20px; font-size:14px;}
+.mb-borrow-list table {padding:10px; margin-bottom:30px; background:#f3e8cb;}
+.mb-borrow-list tr th {padding:10px 0; text-align:center; border-bottom:1px solid #333; background:#e8e0ae;}
+.mb-borrow-list tr td {padding:10px 15px; border-bottom:1px solid #333; text-align:center; background:#f3e8cb;}
+.mb-borrow-list tr td input {width:20px; text-align:center; border:0; outline:0; background:#f3e8cb;}
+.mb-borrow-list tr td a {color:#333;}
+.mb-borrow-list tr td a:hover {color:#ff0080; text-decoration:underline;}
+.mb-borrow-list table {width:100%; margin:30px auto; border-spacing:0;}
+.borrow-btn-wrap {margin-top:30px; text-align:center;}
+.borrow-btn-wrap a {display:inline-block;}
+
+.borrow-btn {text-align:center;}
+.borrow-btn a {display:inline-block;}
+
+/*========== mylist ==========*/
+.mb-borrow-mylist {width:40%; padding:20px; margin:0 auto; text-align:center; background:#f3e8cb;}
+.mb-borrow-mylist table {width:100%; padding:10px; border-spacing:0; background:#f3e8cb;}
+.mb-borrow-mylist tr th {padding:10px 0; text-align:center; background:#e8e0ae;}
+.mb-borrow-mylist tr td {padding:5px 3px; border-bottom:1px solid #333; text-align:center;}
+.mb-borrow-mylist tr td a {color:#333;}
+.mb-borrow-mylist > p {margin:10px 0; color:#ff0080;}
+
+
+/*========== memberinfo > tabs ==========*/
+.tabs{width:62%; margin:10px auto 0;}
+input[type="radio"] {display:none;}
+.tabs label {width:170px; height:35px; padding:10px 15px; cursor:pointer; text-align:center;}
+input[type="radio"]:checked+label {background:#f3e8cb;}
+input[type="radio"]+label {border-radius:10px 10px 0 0; background:#e8e0ae;}
+#tabs-info:checked ~ .info-contents > .mb-info,
+#tabs-list:checked ~ .info-contents > .mb-borrow-mylist {left:0;}
+.info-contents {
+	position:relative;
+	display:flex; justify-content:center; border-radius:0 10px 10px 10px;
+	width:100%; height:360px; margin:10px auto 15px; overflow:hidden;
+}
+.mb-info {
+	position:absolute; top:0; left:-1500px; background:#f3e8cb;
+	width:100%; padding:20px; 
+}
+.mb-info ul li {
+	display:flex;
+	width:100%; padding:5px 0; border-bottom:1px solid #333;
+}
+.mb-info ul li p {width:100px; padding:3px 5px; text-align:center; background:#e8e0ae;}
+.mb-info ul li span {padding:3px 5px; background:#f3e8cb;}
+.mb-borrow-mylist {
+	position:absolute; top:0; left:1500px;
+	width:100%; padding:20px; border-radius:0 10px 10px 10px; 
+}
+.borrowCnt {font-size:22px; text-align:center;}
+#prefer {display:inline-block; }
+.borrowBtn {
+	width:100%; margin:20px 0; text-align:center;
+}
+.borrowBtn a {
+	width:100px; height:50px; margin:0 auto;
+	line-height:25px; display:inline-block;
+}
+
+
+
+
+
+
+/*========== page ==========*/
+.pagenation {display:flex; justify-content:center; width:100%; margin-bottom:30px;}
+.pagenation li {padding:2px 3px;}
+.pagenation li a {color:#333;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

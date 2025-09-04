@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.admin.mappers.staff">
+
+	<insert id="register" parameterType="org.bookbug.admin.vo.StaffVO">
+		INSERT INTO staff_tbl(
+		staff_id
+		, staff_pwd
+		, staff_name
+		, staff_gender
+		, staff_phone
+		, staff_birthday
+		, staff_level
+		,staff_department
+		,staff_reg_date
+		,staff_up_date
+		) VALUES (
+		#{staff_id}
+		, #{staff_pwd}
+		, #{staff_name}
+		, #{staff_gender}
+		, #{staff_phone}
+		, #{staff_birthday}
+		, #{staff_level}
+		, #{staff_department}
+		, now()
+		, now()
+		)
+	</insert>
+
+	<select id="getMypage" resultType="org.bookbug.admin.vo.StaffVO">
+		SELECT * FROM staff_tbl
+		WHERE staff_id = #{staff_id}
+	</select>
+
+	<update id="staffModify" parameterType="org.bookbug.admin.vo.StaffVO">
+		update staff_tbl set 
+			staff_name = #{staff_name}
+			, staff_gender = #{staff_gender}
+			, staff_phone = #{staff_phone}
+			, staff_birthday = #{staff_birthday}
+			, staff_level = #{staff_level}
+			, staff_department = #{staff_department}
+			, staff_up_date = now()
+		where staff_id = #{staff_id}
+	</update>
+
+	<delete id="staffDelete">
+		delete from staff_tbl
+		where staff_id = #{staff_id}
+	</delete>
+
+	<select id="getCount" parameterType="hashMap" resultType="int">
+		SELECT count(*) FROM staff_tbl
+		
+		<if test="searchType.equals('staff_name')">
+			where staff_name LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('staff_level')">
+			where staff_level LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('staff_department')">
+			where staff_department LIKE concat('%', #{keyword}, '%')
+		</if>
+		
+	</select>
+
+	<select id="getStaffList" parameterType="hashMap" resultType="org.bookbug.admin.vo.StaffVO">
+		SELECT * FROM staff_tbl
+		
+		<if test="searchType.equals('staff_name')">
+			where staff_name LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('staff_level')">
+			where staff_level LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('staff_department')">
+			where staff_department LIKE concat('%', #{keyword}, '%')
+		</if>
+		
+		ORDER BY staff_name ASC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+
+
+
+
+/*============ navigation ============*/
+.top-menu {display:flex; font-size:14px; text-transform:uppercase;}
+.top-menu li {height:60px;}
+.top-menu li a {color: #fff;}
+.top-menu li a span {line-height:60px;}
+.top-menu li p {padding:22px 20px; color: #fff;}
+
+#main-menu {width:480px;}
+#main-menu > li {width:25%; margin:0 20px;}
+#main-menu > li > a {display:block; text-align:center; line-height:57px; transition:all 0.3s ease-in;}
+.sub-menu {display:none; transition:all 0.4s ease-in;}
+.sub-menu > li {width:100%; font-size:14px; text-align:center; line-height:60px;}
+
+.menu-bar {width:0; heigth:3px; background:#d9cc8f}
+#main-menu > li:hover  > .sub-menu  {display:block;}
+
+
+/*============ banner ============*/
+
+
+
+.bn {height:500px;}
+.bn-admin-register, 
+
+
+.bn-admin-register, .bn-admin-login, .bn-book-search, .bn-book-list {background:url(./imgs/registerBackground.jpg) no-repeat center center;}
+h2 {font-weight:100;}
+h2 > span {font-weight:700; color:#d9cc8f;}
+input {width:100%;}
+
+section {width:1000px;}
+
+
+.search-bar  {width:200px; margin:0 10px;  background: #e9e1be; padding: 20px; border-radius: 5px;}
+.search-bar li ,.mb-register-id {
+	height:45px; cursor:pointer;text-align:center; line-height:45px;
+	background: #fdf4d1; font-size:18px;
+	margin:15px 0 15px;
+	box-shadow: inset 0px 0px 0 3px #d9cc8f;
+	transition:all 0.4s ease-in;
+	font-family:"SUIT-Bold";
+}
+.search-bar li:first-child {height:80px; background:#ada271; font-size: 32px; line-height: 80px;}
+.search-bar li:first-child p {font-size:24px; text-align:center; line-height:90px;}
+.search-bar > li a:hover {text-decoration:underline; cursor:pointer;}
+
+
+
+
+.top-menu li:nth-child(4) input[type="hidden"] {display:none;}
+
+

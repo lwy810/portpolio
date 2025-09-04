@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.bn-bookbug-gettoknow {
+	background:url('../../imgs/support/gettoknow/reading-dog-dark.jpg') no-repeat center center; 
+	background-size:cover;
+}
+.bn-bookbug-gettoknow h2 {text-shadow:1px 1px 1px #333; font-weight:lighter;}
+.bn-bookbug-gettoknow span {font-weight:700; }
+.gettoknow-wrap h3 {
+	padding:5px 10px; margin-bottom:50px;
+	font-family:"SUIT-Regular"; font-size:35px; text-align:center;
+	text-shadow:1px 1px 3px #333; 
+	font-weight:200;
+}
+.gettoknow-wrap {padding:10px 0; border-bottom:1px solid #333;}
+.gettoknow-wrap h3 span {color:#fdf4d1; font-weight:700;}
+.gettoknow-wrap > .intro > h3 {background:url('../../imgs/support/gettoknow/waves2-1.jpg') no-repeat center center;}
+.gettoknow-wrap > .history > h3 {background:url('../../imgs/support/gettoknow/waves2-2.jpg') no-repeat center center;}
+.gettoknow-wrap > .policy > h3 {background:url('../../imgs/support/gettoknow/waves2-3.jpg') no-repeat center center;}
+.gettoknow-wrap > .primary-feature > h3 {background:url('../../imgs/support/gettoknow/waves2-4.jpg') no-repeat center center;}
+.gettoknow-wrap > .findus > h3 {background:url('../../imgs/support/gettoknow/waves2-5.jpg') no-repeat center center;}
+
+/*============ input ============*/
+.tabs {width:1000px; margin:0 auto;}
+.tabs input[type="radio"] {display:none;}
+.tabs input[type="radio"]:checked + label {background:#fdf4d1;}
+.tabs label {padding:10px 15px; border-radius:10px 10px 0 0; background:#d9cc8f;}
+.tabs label:hover {cursor:pointer;}
+
+.gettoknow-wrap {
+	width:1000px; height:550px; padding:100px; margin:10px auto; 
+	background:#fdf4d1; border-radius:0 10px 10px 10px;
+}
+.gettoknow-wrap > .history,
+.gettoknow-wrap > .policy,
+.gettoknow-wrap > .primary-feature,
+.gettoknow-wrap > .findus {display:none;}
+
+#tab-intro:checked ~ .gettoknow-wrap > .intro,
+#tab-history:checked ~ .gettoknow-wrap > .history,
+#tab-policy:checked ~ .gettoknow-wrap > .policy,
+#tab-primary-feature:checked ~ .gettoknow-wrap > .primary-feature,
+#tab-findus:checked ~ .gettoknow-wrap > .findus {display:block;} 
+
+#tab-history:checked ~ .gettoknow-wrap > .intro,
+#tab-policy:checked ~ .gettoknow-wrap > .intro,
+#tab-primary-feature:checked ~ .gettoknow-wrap > .intro,
+#tab-findus:checked ~ .gettoknow-wrap > .intro {display:none;} 
+
+.gettoknow-wrap p {line-height:30px;}
+.gettoknow-wrap .history ul {width:500px; margin:0 auto; }
+.gettoknow-wrap .history ul li {display:flex; justify-content:flex-start; align-items:center;}
+.gettoknow-wrap .history ul li p {width:120px; padding:2px 5px; margin:5px 0; text-align:center; background:#d9cc8f;}
+.gettoknow-wrap .history ul li span {padding-left:20px;}
+
+.gettoknow-wrap > .intro p {font-size:18px; word-break:all; text-align:justify;}
+.gettoknow-wrap > .policy p,
+.gettoknow-wrap > .findus p {width:520px; margin:100px auto; font-size:22px; text-align:center;}
+.gettoknow-wrap > .primary-feature p {word-break:all; text-align:justify; line-height:28px;}
+.gettoknow-btn {margin:30px 0; text-align:center;}
+.gettoknow-btn a {display:inline-block;}
+
+.gettoknow-wrap > .policy p img,
+.gettoknow-wrap > .findus p img {width:60px; padding:0 10px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

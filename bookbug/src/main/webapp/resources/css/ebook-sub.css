@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+/* =========FHD=============== */
+@media screen and (min-width : 1400px) {
+    .eb-container {padding-right: 400px;}
+    .eb-container li :nth-child(2) {width: 600px;}
+    h4 {font-size: 30px;}
+}
+
+/* =================HD============= */
+@media screen and (min-width : 1050px) and (max-width : 1399px) {
+    .eb-container {padding-right: 300px;}
+    .eb-container li :nth-child(2) {width: 500px;}
+    h4 {font-size: 30px;}
+}
+
+/* ==================태블릿============= */
+@media screen and (min-width : 760px) and (max-width : 1049px) {
+    .eb-container li :nth-child(2) {width: 300px;}
+}
+
+/* ==================스마트폰============= */
+@media screen and (max-width : 759px) {
+    .eb-container {padding-right: 300px; padding-bottom: 30px;}
+    .eb-container li :nth-child(2) {width: 300px;}
+    h4 {font-size: 20px; text-align: center;}
+}

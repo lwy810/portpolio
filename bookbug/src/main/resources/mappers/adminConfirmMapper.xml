@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.admin.mappers.confirm">
+
+	<select id="login" resultType="org.bookbug.member.vo.MemberVO">
+		SELECT * FROM member_tbl
+		WHERE member_id = #{member_id}
+	</select>
+	
+	
+	<select id="staffLogin" resultType="org.bookbug.admin.vo.StaffVO">
+		SELECT * FROM staff_tbl
+		WHERE staff_id = #{staff_id}
+	</select>
+	
+	<update id="staffPwdModify" parameterType="org.bookbug.admin.vo.StaffVO">
+		update staff_tbl set 
+			staff_pwd = #{staff_pwd}
+		where staff_id = #{staff_id}
+	</update>
+	
+	<update id="memberPwdModify" parameterType="org.bookbug.member.vo.MemberVO">
+		update member_tbl set 
+			member_pwd = #{member_pwd}
+		where member_id = #{member_id}
+	</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

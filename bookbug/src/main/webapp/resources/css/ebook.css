@@ -1,0 +1,193 @@
+@charset "utf-8";
+
+
+/* ============공동 스타일 시트================ */
+p {text-align: center; color:black;}
+.eb-service-bg {background: #d9cc8f;}
+.eb-info-bg {background: #fff1b1;}
+
+
+/* =========FHD=============== */
+@media screen and (min-width : 1400px) {
+	.eb-bn-bg {background:url('../imgs/ebook/eb-bn-bg.jpg') no-repeat center center; background-size:cover;}
+
+    h3 {padding: 0 0 40px; text-align: center;}
+	h5 {font-family: "Playfair Display", serif;}
+    h6 {padding-top: 365px; font-size: 30px; color: #fff; text-align: center;}
+	
+	.eb-bn-bar {width: 4px; height: 100px; background-color: black; margin: 0 auto 50px;}
+	.eb-bn-txt {width: 250px; margin: 0 auto;}
+
+	.eb-container {width:1300px; margin: 50px auto 120px ; padding: 50px 50px 45px;}
+	.eb-container li {width: 360px;}
+	
+	.eb-container li {transition: all 0.4s ease-out;}
+	.eb-bg {
+		width: 360px; height: 465px;
+		transition: all 0.4s ease-out 0.4s;
+	}
+	.eb-bg-1 {background: url(../imgs/ebook/eb-bg-1.jpg) no-repeat center center;}
+	.eb-bg-2 {background: url(../imgs/ebook/eb-bg-2.jpg) no-repeat center center;}
+	.eb-bg-3 {background: url(../imgs/ebook/eb-bg-3.jpg) no-repeat center center;}
+	.eb-bg-4 {background: url(../imgs/ebook/eb-bg-4.jpg) no-repeat center center;}
+	.eb-bg-5 {background: url(../imgs/ebook/eb-bg-5.jpg) no-repeat center center;}
+	.eb-bg-6 {background: url(../imgs/ebook/eb-bg-6.jpg) no-repeat center center;}
+
+	.eb-service-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #d9cc8f inset, 0 0 0 15px #fff inset;
+	}
+	.eb-info-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #fff1b1 inset, 0 0 0 15px #fff inset;
+	}
+	.eb-container li:hover {scale: 1.05;}
+
+	.eb-info-bg {margin-bottom: 100px;}
+	
+	.eb-service-bar, .eb-info-bar {width: 200px; height: 2px; background:#111; margin: 60px auto 40px;}
+	
+	.eb-service-txt, .eb-info-txt {width:230px; margin: 0 auto;}
+}
+
+
+/* =================HD============= */
+@media screen and (min-width : 1050px) and (max-width : 1399px) {
+	.eb-bn-bg {background:url('../imgs/ebook/eb-bn-bg.jpg') no-repeat center center; background-size:cover;}
+
+    h3 {padding: 0 0 40px; text-align: center;}
+	h5 {font-family: "Playfair Display", serif;}
+    h6 {padding-top: 285px; font-size: 30px; color: #fff; text-align: center;}
+	
+	.eb-bn-bar {width: 4px; height: 100px; background-color: black; margin: 0 auto 50px;}
+	.eb-bn-txt {width: 250px; margin: 0 auto;}
+
+	.eb-container {width:1000px; margin: 50px auto 100px ; padding: 45px 45px 40px;}
+	.eb-container li {width: 270px;}
+	
+	.eb-container li {transition: all 0.4s ease-out;}
+	.eb-bg {
+		width: 270px; height: 365px; margin: 0 auto;
+		transition: all 0.4s ease-out 0.4s; 
+	}
+	.eb-bg-1 {background: url(../imgs/ebook/eb-bg-1.jpg) no-repeat center center;}
+	.eb-bg-2 {background: url(../imgs/ebook/eb-bg-2.jpg) no-repeat center center;}
+	.eb-bg-3 {background: url(../imgs/ebook/eb-bg-3.jpg) no-repeat center center;}
+	.eb-bg-4 {background: url(../imgs/ebook/eb-bg-4.jpg) no-repeat center center;}
+	.eb-bg-5 {background: url(../imgs/ebook/eb-bg-5.jpg) no-repeat center center;}
+	.eb-bg-6 {background: url(../imgs/ebook/eb-bg-6.jpg) no-repeat center center;}
+
+	.eb-service-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #d9cc8f inset, 0 0 0 15px #fff inset;
+	}
+	.eb-info-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #fff1b1 inset, 0 0 0 15px #fff inset;
+	}
+	.eb-container li:hover {scale: 1.05;}
+
+	.eb-info-bg {margin-bottom: 100px;}
+	
+	.eb-service-bar, .eb-info-bar {width: 200px; height: 2px; background:#111; margin: 40px auto 30px;}
+	
+	.eb-service-txt, .eb-info-txt {width:230px; margin: 0 auto;}
+
+}
+
+/* ==================태블릿============= */
+@media screen and (min-width : 760px) and (max-width : 1049px) {
+
+	.eb-bn-bg {background:url('../imgs/ebook/eb-bn-tb-bg.jpg') no-repeat center center; background-size:cover;}
+
+    h3 {padding: 0 0 30px;text-align: center;}
+	h5 {font-family: "Playfair Display", serif;}
+    h6 {padding-top: 30px; font-size: 30px; color: #fff; text-align: center;}
+	
+	.eb-bn-bar {width: 4px; height: 100px; background-color: black; margin: 0 auto 30px;}
+	.eb-bn-txt {width: 250px; margin: 0 auto;}
+
+	.eb-container {
+		flex-wrap:wrap;
+		width:720px; margin: 30px auto 60px ; 
+		padding: 30px;
+	}
+
+	.eb-container li {transition: all 0.4s ease-out;}
+	.eb-container li:nth-child(3) {margin: 30px auto 0;}
+	
+	.eb-bg {
+		width: 315px; height: 400px;
+		transition: all 0.4s ease-out 0.4s;
+	}
+	.eb-bg-1 {background: url(../imgs/ebook/eb-bg-tb-1.jpg) no-repeat center center;}
+	.eb-bg-2 {background: url(../imgs/ebook/eb-bg-tb-2.jpg) no-repeat center center;}
+	.eb-bg-3 {background: url(../imgs/ebook/eb-bg-tb-3.jpg) no-repeat center center;}
+	.eb-bg-4 {background: url(../imgs/ebook/eb-bg-tb-4.jpg) no-repeat center center;}
+	.eb-bg-5 {background: url(../imgs/ebook/eb-bg-tb-5.jpg) no-repeat center center;}
+	.eb-bg-6 {background: url(../imgs/ebook/eb-bg-tb-6.jpg) no-repeat center center;}
+
+	.eb-service-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #d9cc8f inset, 0 0 0 15px #fff inset;
+	}
+	.eb-info-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #fff1b1 inset, 0 0 0 15px #fff inset;
+	}
+	.eb-container li:hover {scale: 1.05;}
+
+	.eb-info-bg {margin-bottom: 100px;}
+
+	.eb-service-txt, .eb-info-txt {
+		width:230px; margin: -80px auto 40px;
+		color: #fff;
+	}
+
+}
+
+/* ==================스마트폰============= */
+@media screen and (max-width : 759px) {
+
+	.eb-bn-bg {background:url('../imgs/ebook/eb-bn-bg.jpg') no-repeat center center; background-size:cover;}
+
+	h2 {width: 350px; margin: 0 auto;}
+    h3 {
+		padding-bottom: 30px; width: 300px;
+		margin: 0 auto; text-align:center;
+	}
+	h5 {font-family: "Playfair Display", serif;}
+    h6 {padding-top: 30px; font-size: 30px; color: #fff; text-align: center;}
+	
+	.eb-bn-bar {width: 4px; height: 100px; background-color: black; margin: 0 auto 30px;}
+	.eb-bn-txt {width: 250px; margin: 0 auto;}
+
+	.eb-container {
+		width:350px; margin: 30px auto 60px ; 
+		padding: 30px 30px 0; flex-wrap: wrap;
+	}
+
+	.eb-container li {transition: all 0.4s ease-out;}
+	.eb-container li {width: 290px;}
+	
+	.eb-bg {
+		width: 290px; height: 450px; margin-bottom: 30px;
+		transition: all 0.4s ease-out 0.4s;
+	}
+	.eb-bg-1 {background: url(../imgs/ebook/eb-bg-sm-1.jpg) no-repeat center center;}
+	.eb-bg-2 {background: url(../imgs/ebook/eb-bg-sm-2.jpg) no-repeat center center;}
+	.eb-bg-3 {background: url(../imgs/ebook/eb-bg-sm-3.jpg) no-repeat center center;}
+	.eb-bg-4 {background: url(../imgs/ebook/eb-bg-sm-4.jpg) no-repeat center center;}
+	.eb-bg-5 {background: url(../imgs/ebook/eb-bg-sm-5.jpg) no-repeat center center;}
+	.eb-bg-6 {background: url(../imgs/ebook/eb-bg-sm-6.jpg) no-repeat center center;}
+
+	.eb-service-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #d9cc8f inset, 0 0 0 15px #fff inset;
+	}
+	.eb-info-bg .eb-bg:hover{
+		box-shadow: 0 0 0 5px #000 inset, 0 0 0 10px #fff1b1 inset, 0 0 0 15px #fff inset;
+	}
+	.eb-container li:hover {scale: 1.05;}
+
+	.eb-info-bg {margin-bottom: 100px;}
+
+	.eb-service-txt, .eb-info-txt {
+		width:230px; margin: -110px auto 70px;
+		color: #fff;
+	}
+a {color:black;}
+}

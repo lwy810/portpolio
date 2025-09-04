@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.bookbug.mappers.answer">
+
+
+
+<insert id="register" parameterType="org.bookbug.member.vo.AnswerVO">
+	INSERT INTO answer_tbl(
+	advice_no
+	, respondent
+	, content
+	, reg_date
+	, up_date
+	) VALUES (
+	#{advice_no}
+	, #{respondent}
+	, #{content}
+	, now()
+	, now()
+	)
+</insert>
+
+<select id="getAnswerList" parameterType="int" resultType="org.bookbug.member.vo.AnswerVO">
+	SELECT * FROM answer_tbl WHERE advice_no = #{advice_no}
+	ORDER BY advice_no, reg_date DESC
+</select>
+
+<select id="getSelectAnswer" parameterType="hashMap" resultType="org.bookbug.member.vo.AnswerVO">
+	SELECT * FROM answer_tbl WHERE advice_no = #{advice_no} and answer_no = #{answer_no}
+</select>
+
+<delete id="delete" parameterType="org.bookbug.member.vo.AnswerVO">
+	DELETE FROM answer_tbl
+	WHERE reply_num = #{reply_num} and article_num=#{article_num}
+</delete>
+
+<update id="getOneUpdate" parameterType="org.bookbug.member.vo.AnswerVO">
+	UPDATE answer_tbl 
+	SET	content = #{content}
+	,up_date = now()
+	WHERE answer_no=#{answer_no}
+</update>
+
+<delete id="getOneDelete" parameterType="org.bookbug.member.vo.AnswerVO">
+	DELETE FROM answer_tbl 
+	WHERE advice_no = #{advice_no} and answer_no=#{answer_no}
+</delete>
+
+<delete id="deleteAllAnswer" parameterType="int">
+	DELETE FROM answer_tbl 
+	WHERE advice_no = #{advice_no}
+</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

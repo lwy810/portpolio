@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+section {width:1300px;}
+.msg {text-align:center;}
+/*=========== banner ===========*/
+.bn-notice-list,
+.bn-notice-register,
+.bn-notice-view,
+.bn-notice-update {background:url('../../imgs/support/neon1.jpg') no-repeat center center; background-size:cover;}
+
+
+.noticeCnt {margin:0 auto 30px; font-size: 32px; font-weight: bold;}
+
+.bn-notice-list h2,
+.bn-notice-register h2,
+.bn-notice-view h2,
+.bn-notice-update h2 {text-shadow:2px 2px 1px #333;font-weight:lighter;}
+
+
+.bn-notice-list span,
+.bn-notice-register span,
+.bn-notice-view span,
+.bn-notice-update span {font-weight:700;}
+
+
+/*=========== searchbox ===========*/
+.searchbox {width:1300px; text-align:center;}
+.searchbox select {padding:10px 15px;}
+.searchbox input {width:35%;padding:10px 15px;}
+
+
+
+/*=========== register ===========*/
+.mb-notice-register table {width:1300px; padding:10px; margin:0 auto; border-spacing:0; background:#f3e8cb;}
+.mb-notice-register table tr td {padding:10px 15px; border-bottom:1px solid #9a6b25; background:#e8e0ae;}
+.mb-notice-register table tr td:first-child, 
+.mb-notice-register table tr:first-child td:nth-child(3) {width:10%; text-align:center; padding:10px 15px; border-bottom:1px solid #9a6b25; background:#e8e0ae;}
+.mb-notice-register table tr td input {width:100%; padding:10px 15px; border:0; outline:0;}
+.mb-notice-register table tr td select {width:100%; padding:10px 15px; border:0;}
+.mb-notice-register table tr:last-child td:first-child {text-align:left;}
+.mb-notice-register table tr:last-child td:nth-child(2) {text-align:right;}
+.mb-notice-register table tr td button {text-align:right;}
+.mb-notice-register a {display:inline-block;}
+.mb-notice-register a, .mb-notice-register button {margin:20px 0; text-align:center;}
+
+
+
+/*=========== list ===========*/
+.mb-notice-list {width:1300px; margin-top:30px;}
+.mb-notice-list table {width:100%; padding:10px; margin:10px auto; border-spacing:0; background:#f3e8cb;}
+.mb-notice-list table tr th {padding:10px 15px; border-bottom:1px solid #333; background:#e8e0ae;}
+.mb-notice-list table tr td {border-bottom:1px solid #333; text-align:center;}
+.mb-notice-list table tr:last-child td {line-height:30px; font-size:18px; border-bottom:0; text-align:justify;}
+.mb-notice-list table tr:nth-child(2) td {padding:10px 0; background:#fff; border-bottom:1px dashed #333;}
+.mb-notice-list table tr:nth-child(3) td {background:#fff; border-bottom:0;}
+.mb-notice-list table tr td:first-child input {
+	width:30px; text-align:center; background:none; border:0;
+	outline:0; 
+}
+.mb-notice-list table tr td a {color:#333;}
+.mb-notice-detail {width:70%; padding:10px; margin:100px auto; background:#f3e8cb;}
+.registerBtn {text-align:center;}
+.registerBtn a {display:inline-block; margin:0 5px;}
+.content {padding:10px 50px 20px; background:#fff;}
+
+
+.mb-notice-img {margin:20px 0; text-align:center;}
+.mb-notice-img img {width:15%; cursor:pointer;}
+.bigImg {display:none; width:100%; height:100%;}
+.bigImg > img {width:30%; position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); cursor:pointer; z-index:11;}
+.bg {
+	display:none; position: fixed; top:0; left:0; width:100vw; height:100vh; 
+	background:rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 9; 
+}
+
+/*=========== view ===========*/
+.mb-notice-view {width:1300px; padding:20px; margin:0 auto;}
+.mb-notice-view a {padding:10px; margin:20px 0; text-align:center;}
+.mb-notice-view table {width:100%; padding:10px; border-spacing:0;  background:#f3e8cb;	}
+.mb-notice-view table tr:nth-child(5) td:first-child {height:50px; text-align:center; background:#e8e0ae;}
+.mb-notice-view table tr:nth-child(6) td:first-child {height:300px; text-align:justify; background:#fff;}
+.mb-notice-view table tr td {width:25%; height:50px; border-bottom:1px dashed #333; background:#e8e0ae;}
+.mb-notice-view table tr td:first-child {width:30%; height:50px; text-align:center; background:#e8e0ae;}
+.mb-notice-view table tr td:last-child {padding:0 10px; background:#fff;}
+.mb-notice-view table tr td:nth-child(2) {padding:0 10px; background:#fff;}
+.mb-notice-view table tr td label {padding:10px 15px;}
+.mb-notice-view table tr:last-child td {padding:10px 15px; border-bottom:0;}
+.viewBtn {width:70%; margin:20px auto; text-align:center;}
+.viewBtn a {display:inline-block;}
+
+/*=========== view > reply ===========*/
+.mb-answer-input {width:750px; margin:0 auto;}
+.answer-reg > li:first-child {
+	display:flex; justify-content:space-between; align-items:center;
+	margin:10px 0;
+}
+.answer-reg > li:first-child input {padding:5px 10px; border:0; outline:0; font-size:16px;}
+
+
+/*=========== update ===========*/
+.mb-notice-update table {width:1300px; padding:10px; margin:0 auto; border-spacing:0; background:#f3e8cb;}
+.mb-notice-update table tr td {padding:10px 15px; border-bottom:1px solid #9a6b25; background:#e8e0ae;}
+.mb-notice-update table tr td:first-child, 
+.mb-notice-update table tr:first-child td:nth-child(3) {width:10%; text-align:center; padding:10px 15px; border-bottom:1px solid #9a6b25; background:#e8e0ae;}
+.mb-notice-update table tr td input {width:100%; padding:10px 15px; border:0; outline:0;}
+.mb-notice-update table tr td select {width:100%; padding:10px 15px; border:0;}
+.mb-notice-update table tr:last-child td:first-child {text-align:left;}
+.mb-notice-update table tr:last-child td:nth-child(2) {text-align:right;}
+.mb-notice-update table tr td button {text-align:right;}
+.img-notice {width:100%; padding:10px; text-align:center; background:#fff;}
+.mb-notice-update a {display:inline-block;}
+.mb-notice-update a, .mb-notice-update button {margin:20px 0; text-align:center;}
+
+
+
+
+
+
+/*=========== pagenation ===========*/
+.pagenation {text-align:center;}
+.pagenation li {padding:10px 15px; }
+.pagenation li a {color:#333; }

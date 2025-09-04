@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.board.mappers.reply">
+
+
+	<select id="getReplyList" parameterType="int" resultType="org.bookbug.board.vo.ReplyVO">
+		SELECT * FROM reply_tbl WHERE article_num = #{article_num}
+	</select>
+	
+	<select id="getReplyOne" parameterType="int" resultType="org.bookbug.board.vo.ReplyVO">
+		SELECT * FROM reply_tbl WHERE article_num = #{article_num} and reply_num = #{reply_num}
+	</select>
+	
+	<insert id="register" parameterType="org.bookbug.board.vo.ReplyVO">
+		INSERT INTO reply_tbl(
+		article_num
+		, reply_writer
+		, reply_thumbnail
+		, reply_content
+		, reply_reg_date
+		, reply_up_date
+		) VALUES (
+		#{article_num}
+		, #{reply_writer}
+		, #{reply_thumbnail}
+		, #{reply_content}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="org.bookbug.board.vo.ReplyVO">
+		DELETE FROM reply_tbl
+		WHERE reply_num = #{reply_num} and article_num=#{article_num}
+	</delete>
+	
+	<update id="update" parameterType="org.bookbug.board.vo.ReplyVO">
+		UPDATE reply_tbl 
+		SET	reply_content = #{reply_content}
+		,reply_up_date = now()
+		WHERE reply_num=#{reply_num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

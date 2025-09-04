@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+
+/*======================우영=================*/
+
+.bn-mylibrary-list  {
+	background:url(../../../imgs/culture/cul-sec-bn-1-bg-1.jpg) center center;
+	background-size:cover;
+}
+
+.book-thumbnail {width:80px; height:110px; }
+.book-thumbnail img {
+	display:block; box-sizing:border-box;
+	max-width: 100%; max-height: 100%;
+	overflow: clip; overflow-clip-margin: content-box;
+}
+
+.borrow-index, .book-thumbnail  {margin-right:15px;}
+.borrow-list li {padding-bottom:10px;}
+.borrow-list li:last-child {padding-bottom:0;}
+
+
+.mylibrary-container {display:flex; width:100%; justify-content: center;}
+
+.search-bar li:nth-child(2) {background:#fdf4d1;}
+
+.mylibrary-menu-container {display:flex; width:100%; margin-bottom:20px; border:1px solid #b2b2b2;}
+.mylibrary-menu-container li {width:33.33%; padding:20px 0;  text-align:center;}
+.mylibrary-menu-container li:nth-child(2) {border-left:1px solid #b2b2b2;}
+.mylibrary-menu-container li:nth-child(3) {background:#fdf4d1; border-left:1px solid #b2b2b2;}
+
+.mylibrary-menu-container li a{color:black;}
+
+
+.mylibrary-wrap {width:800px;}
+.info-sentense {width:100%; margin-bottom:20px; padding: 20px; border:3px solid #fc0;}
+.info-sentense p {font-size:14px;}
+
+
+.borrow-list-container {
+	display:flex; 
+	width:100%; padding:10px; 
+	border-bottom:1px solid black;
+}
+
+/*=======================================*/
+
+
+
+
+
+
+.bn-book-search, .bn-book-register  {background:url(../../imgs/culture/cul-sec-bn-1-bg-1.jpg);}
+.book-register {width:350px; margin:100px auto;}
+.book-container, .search-keyword {display:flex;}
+
+.book-register  li:nth-child(3), .book-register  li:nth-child(4), 
+.book-register  li:nth-child(8), .book-register  li:nth-child(9) {display:flex;}
+.book-register  li:nth-child(3) input, .book-register  li:nth-child(9) input{display:none;}
+.book-register  li:nth-child(3) input:checked  + label, 
+.book-register  li:nth-child(9) input:checked  + label {background:skyblue;}
+
+#category_depth_2, #category_number {display:none;}
+
+.book-list-wrap, .mylibrary-interested-book-wrap{width:100%; }
+.book-list {width:100%;}
+.book-list-container-0, .interested_book_list-container-0, .borrow-list-container-0 {border-top:1px solid black;}
+.book-list-container, .interested_book_list-container, .borrow-list-container{
+	display:flex; 
+	width:100%; padding:10px; 
+	border-bottom:1px solid black;
+}
+
+
+/*======================미디어쿼리=================*/
+/*====================================================*/
+@media screen and (min-width:1400px) {
+.book-register {padding:15px; margin-bottom:100px; background:#fdf4d1; border-radius:5px;}
+.book-register {width:350px; margin:100px auto;}
+.book-register  li {margin:10px;}
+
+.book-register  li:nth-child(3) p, .book-register  li:nth-child(9) p {margin-right:10px;}
+.book-register  li:nth-child(3) input + label, 
+.book-register  li:nth-child(9) input + label {margin-right:10px; background:white;}
+
+.book-register  li:nth-child(8) input {padding:5px; text-align:center;}
+.book-register  li:nth-child(8) input[name="book_isbn-1"] {width:40px;}
+.book-register  li:nth-child(8) input[name="book_isbn-2"] {width:30px;}
+.book-register  li:nth-child(8) input[name="book_isbn-3"] {width:55px;}
+.book-register  li:nth-child(8) input[name="book_isbn-4"] {width:30px;}
+.book-register  li:nth-child(8) input[name="book_isbn-5"] {width:20px;}
+.book-register  li:nth-child(8) input[name="book_isbn-6"] {width:50px; margin:0;}
+.book-register  li:nth-child(8) p {margin:0 3px; line-height:28px;}
+
+.book-container {width:1000px; margin:0 auto;}
+
+ .search-keyword {margin-bottom:30px; border-radius: 5px;}
+.search-keyword  li:nth-child(2) input {width:605px;}
+ .search-keyword  li:nth-child(2) input,#searchType {height: 40px; padding:10px; border: none; box-shadow: 0px 0px 0 5px #e9e1be inset;}
+ .search-keyword  li:nth-child(4) a,#searchBtn {
+ 	width: 90px; height:40px; margin:0; background:#fdf4d1; text-align: center; cursor: pointer;
+ 	transition: all 0.4s ease;
+ }
+ .search-keyword  li:nth-child(4) a:hover ,#searchBtn:hover {background:#d9cc8f; color:#fff;}
+
+.book-list-container  div {margin-right:15px;}
+.book-thumbnail {width:80px; height:98px;}
+.book-list li {justify-content:space-between; padding-bottom:10px; line-height:16px; }
+.book-list li:last-child {display:flex; padding-bottom:0;}
+.book-list span {margin-right:15px;}
+
+.
+
+
+}
+
+
+
+/*======================HD=================*/
+@media screen and (min-width:1050px) and (max-width:1399px) {
+	.book-register {padding:15px; margin-bottom:100px; background:#fdf4d1; border-radius:5px;}
+.book-register {width:350px; margin:100px auto;}
+.book-register  li {margin:10px;}
+
+.book-register  li:nth-child(3) p, .book-register  li:nth-child(9) p {margin-right:10px;}
+.book-register  li:nth-child(3) input + label, 
+.book-register  li:nth-child(9) input + label {margin-right:10px; background:white;}
+
+.book-register  li:nth-child(8) input {padding:5px; text-align:center;}
+.book-register  li:nth-child(8) input[name="book_isbn-1"] {width:40px;}
+.book-register  li:nth-child(8) input[name="book_isbn-2"] {width:30px;}
+.book-register  li:nth-child(8) input[name="book_isbn-3"] {width:55px;}
+.book-register  li:nth-child(8) input[name="book_isbn-4"] {width:30px;}
+.book-register  li:nth-child(8) input[name="book_isbn-5"] {width:20px;}
+.book-register  li:nth-child(8) input[name="book_isbn-6"] {width:50px; margin:0;}
+.book-register  li:nth-child(8) p {margin:0 3px; line-height:28px;}
+
+.book-container {width:1000px; margin:0 auto;}
+
+ .search-keyword {margin-bottom:30px; padding:0 10px; background: #d9cc8f; border-radius: 5px; line-height: 55px;}
+ .search-keyword  li:nth-child(2) input {width:400px;}
+ .search-keyword  li:nth-child(2) input,#searchType {height: 40px; padding: 10px; border: none; box-shadow: 0px 0px 0 3px #e9e1be inset;}
+ .search-keyword  li:nth-child(4) a,#searchBtn {
+ 	width: 90px; background: #fdf4d1; text-align: center; cursor: pointer;
+ 	transition: all 0.4s ease;
+ 	}
+ 	#searchBtn {height: 40px; margin-top: 9px;}
+ .search-keyword  li:nth-child(4) a:hover ,#searchBtn:hover {background:#d9cc8f; color:#fff;}
+ .search-keyword  li {margin:5px;}
+
+.book-list-container  div {margin-right:15px;}
+.book-thumbnail {width:80px; height:98px;}
+.book-list li {padding-bottom:10px; line-height:16px;}
+.book-list li:last-child {padding-bottom:0;}
+.book-list span {margin-right:15px;}
+}
+
+@media screen and (min-width:760px) and (max-width:1049px) {
+	
+}
+
+@media screen and (max-width:759px) {
+	
+}
+
+
+
+
+
+
+

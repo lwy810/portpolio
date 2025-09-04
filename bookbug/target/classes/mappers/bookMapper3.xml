@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.member.mappers.book">
+
+	<insert id="register" parameterType="org.bookbug.book.vo.BookVO">
+		insert into book_tbl (
+		book_id
+		, book_thumbnail
+		, book_title
+		, book_subtitle
+		, book_category_type
+		, book_category
+		, book_callnumber
+		, book_type
+		, book_position
+		, book_author
+		, book_publisher
+		, book_publisher_date
+		, book_isbn
+		, book_rental_able
+		, book_reg_date
+		, book_up_date
+		) values (
+		#{book_id}
+		, #{book_thumbnail}
+		, #{book_title}
+		, #{book_subtitle}
+		, #{book_category_type}
+		, #{book_category}
+		, #{book_callnumber}
+		, #{book_type}
+		, #{book_position}
+		, #{book_author}
+		, #{book_publisher}
+		, #{book_publisher_date}
+		, #{book_isbn}
+		, #{book_rental_able}
+		, now()
+		, now()
+		)
+	</insert>
+
+
+	<select id="getCategoryDepth_1"  resultType="String">
+		select distinct category_depth_1 from category_tbl
+	</select>
+
+	<select id="getCategoryDepth_2" resultType="String">
+		select distinct category_depth_2 from category_tbl
+		where category_depth_1 = #{category_depth_1}
+	</select>
+
+	<select id="getCategoryNumberName" resultType="org.bookbug.book.vo.CategoryVO">
+		select category_number, category_name from category_tbl
+		where category_depth_2 = #{category_depth_2}
+	</select>
+	
+	<select id="getBookCount" parameterType="hashMap" resultType="int">
+		select count(*) from book_tbl
+		
+		<if test='searchType.equals("book_title")'>
+			where book_title like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("book_author")'>
+			where book_author like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("book_publisher")'>
+			where book_publisher like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("all")'>
+			where book_title like concat('%', #{keyword}, '%')
+				or book_author like concat('%', #{keyword}, '%')
+					or book_publisher like concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	
+	<select id="getSubjectCount" parameterType="String" resultType="int">
+		select count(*) from book_tbl
+		where book_category = #{book_category}
+	</select>
+	
+		<select id="getSameBook_count"  resultType="int">
+		select count(*) from book_tbl	
+		where book_title = #{book_title}
+	</select>
+	
+	<select id="getBook_category_count"  resultType="int">
+		select count(*) from book_tbl	
+		where book_category = #{category_number}
+	</select>
+
+	<select id="getBookList" parameterType="hashMap" resultType="org.bookbug.book.vo.BookVO">
+		select * from book_tbl
+		
+		<if test='searchType.equals("book_title")'>
+			where book_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("book_author")'>
+			where book_author like concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("book_publisher")'>
+			where book_publisher like concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("all")'>
+			where book_title like concat('%', #{keyword}, '%')
+				or book_author like concat('%', #{keyword}, '%')
+					or book_publisher like concat('%', #{keyword}, '%')
+		</if>
+		
+		ORDER BY book_id ASC
+		LIMIT  #{displayPost}, #{postNum}
+	</select>
+
+	<select id="getReSearchList" parameterType="hashMap" resultType="org.bookbug.book.vo.BookVO">
+		select * from book_tbl
+		
+		<if test='searchType.equals("book_title")'>
+			where book_title like concat('%', #{keyword}, '%') 
+			<if test='searchType2.equals("book_title")'>
+				and book_title like concat('%', #{keyword2}, '%')
+			</if>
+			<if test='searchType2.equals("book_author")'>
+				and book_author like concat('%', #{keyword2}, '%')
+			</if>			
+			<if test='searchType2.equals("book_publisher")'>
+				and book_publisher like concat('%', #{keyword2}, '%')
+			</if>		
+			<if test='searchType2.equals("all")'>
+				and (book_title like concat('%', #{keyword2}, '%')
+					or book_author like concat('%', #{keyword2}, '%')
+						or book_publisher like concat('%', #{keyword2}, '%'))
+			</if>		
+		</if>
+		
+		<if test='searchType.equals("book_author")'>
+			where book_author like concat('%', #{keyword}, '%') 
+			<if test='searchType2.equals("book_title")'>
+				and book_title like concat('%', #{keyword2}, '%')
+			</if>
+			<if test='searchType2.equals("book_author")'>
+				and book_author like concat('%', #{keyword2}, '%')
+			</if>			
+			<if test='searchType2.equals("book_publisher")'>
+				and book_publisher like concat('%', #{keyword2}, '%')
+			</if>		
+			<if test='searchType2.equals("all")'>
+				and (book_title like concat('%', #{keyword2}, '%')
+					or book_author like concat('%', #{keyword2}, '%')
+						or book_publisher like concat('%', #{keyword2}, '%'))
+			</if>		
+		</if>
+		
+		<if test='searchType.equals("book_publisher")'>
+			where book_publisher like concat('%', #{keyword}, '%') 
+			<if test='searchType2.equals("book_title")'>
+				and book_title like concat('%', #{keyword2}, '%')
+			</if>
+			<if test='searchType2.equals("book_author")'>
+				and book_author like concat('%', #{keyword2}, '%')
+			</if>			
+			<if test='searchType2.equals("book_publisher")'>
+				and book_publisher like concat('%', #{keyword2}, '%')
+			</if>		
+			<if test='searchType2.equals("all")'>
+				and (book_title like concat('%', #{keyword2}, '%')
+					or book_author like concat('%', #{keyword2}, '%')
+						or book_publisher like concat('%', #{keyword2}, '%'))
+			</if>		
+		</if>
+		
+		<if test='searchType.equals("all")'>
+			where (book_title like concat('%', #{keyword}, '%')
+				or book_author like concat('%', #{keyword}, '%')
+					or book_publisher like concat('%', #{keyword}, '%'))
+			<if test='searchType2.equals("book_title")'>
+				and book_title like concat('%', #{keyword2}, '%')
+			</if>
+			<if test='searchType2.equals("book_author")'>
+				and book_author like concat('%', #{keyword2}, '%')
+			</if>			
+			<if test='searchType2.equals("book_publisher")'>
+				and book_publisher like concat('%', #{keyword2}, '%')
+			</if>		
+			<if test='searchType2.equals("all")'>
+				and (book_title like concat('%', #{keyword2}, '%')
+					or book_author like concat('%', #{keyword2}, '%')
+						or book_publisher like concat('%', #{keyword2}, '%'))
+			</if>		
+		</if>
+		
+		ORDER BY book_id ASC
+		LIMIT  #{displayPost}, #{postNum}
+	</select>
+
+
+	<select id="getCategory2List"  resultType="String">
+		select DISTINCT category_depth_2 from category_tbl
+		where category_depth_1 = #{category_depth_1}
+	</select>
+	
+	<select id="getCategorySubList"  resultType="org.bookbug.book.vo.CategoryVO">
+		select DISTINCT category_number, category_name from category_tbl
+		where category_depth_2 = #{category_depth_2}
+	</select>
+	
+
+	<update id="getUpdateBookStateNow" parameterType="hashMap">
+		UPDATE book_tbl 
+		SET book_rental_able = #{borrow_state}
+		, book_up_date = now()
+		WHERE book_id = #{book_id}
+	</update>
+	
+	<select id="getSubjectList"  parameterType="hashMap" resultType="org.bookbug.book.vo.BookVO">
+		select * from book_tbl 
+		where book_category = #{book_category}
+		
+		ORDER BY book_id ASC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<select id="getBookOne"  parameterType="String" resultType="org.bookbug.book.vo.BookVO">
+		select * from book_tbl 
+		where book_id = #{book_id}
+	</select>
+	
+	<select id="getCategoryList" resultType="org.bookbug.book.vo.CategoryVO">
+		select * from category_tbl
+		where category_number = #{book_category}
+	</select>
+	
+	<update id="bookModify" parameterType="org.bookbug.book.vo.BookVO">
+		update book_tbl	set 
+			book_id = #{book_id}
+			,	book_thumbnail = #{book_thumbnail}
+			,	book_title = #{book_title}
+			,	book_subtitle = #{book_subtitle}
+			,	book_category_type = #{book_category_type}
+			,	book_category = #{book_category}
+			,	book_type = #{book_type}
+			,	book_position = #{book_position}
+			,	book_author = #{book_author}
+			,	book_publisher = #{book_publisher}
+			,	book_publisher_date = #{book_publisher_date}
+			,	book_detail = #{book_detail}
+			,	book_isbn = #{book_isbn}
+			,	book_rental_able = #{book_rental_able}
+			,	book_up_date = now()
+			where book_id = #{search_book_id}
+	</update>
+	
+	
+	<delete id="bookDelete" parameterType="String">
+		delete from book_tbl
+		where book_id = #{book_id}
+	</delete>
+	
+	
+	<update id="bookBorrowCntUp">
+		update book_tbl
+		set book_borrow_cnt = book_borrow_cnt + 1
+		where book_id = #{book_id}
+	</update>
+	
+	<select id="getNewBookCount" parameterType="hashMap" resultType="int">
+		select count(*) from book_tbl
+		
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("oneMonth")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -30 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+		
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("threeWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -21 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("twoWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -14 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>	
+
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("oneWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -7 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+				
+	</select>
+	
+
+	<select id="getNewBookList" parameterType="hashMap" resultType="org.bookbug.book.vo.BookVO">
+		select * from book_tbl
+		
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("oneMonth")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -30 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+		
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("threeWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -21 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("twoWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -14 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>	
+
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("oneWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -7 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+		
+		ORDER BY book_reg_date ASC
+		LIMIT #{displayPost}, #{postNum}
+
+	</select>
+	
+	
+	<update id="bookBorrowModify" parameterType="map" >
+		update book_tbl
+		set book_rental_able = #{book_rental_able}
+		where book_id = #{book_id}
+	</update>
+	
+
+<select id="getBorrowBestList" parameterType="hashMap" resultType="org.bookbug.book.vo.BookVO">
+		select * from book_tbl
+		
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("oneMonth")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -30 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+		
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("threeWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -21 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("twoWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -14 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>	
+
+		<if test='registerPeriod != null  &amp;&amp; registerPeriod.equals("oneWeek")'>
+		where book_reg_date > (SELECT DATE_ADD(NOW(), INTERVAL -7 DAY))
+			<if test='!book_category_type.equals("all")'>
+			and book_category_type = #{book_category_type}
+				<if test='searchType.equals("book_title")'>
+				and book_title like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_author")'>
+				where book_author like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("book_publisher")'>
+				where book_publisher like concat('%', #{keyword}, '%')
+				</if>
+				<if test='searchType.equals("all")'>
+				and (book_title like concat('%', #{keyword}, '%')
+					or book_author like concat('%', #{keyword}, '%')
+						or book_publisher like concat('%', #{keyword}, '%'))
+				</if>
+			</if>
+		</if>
+		
+		ORDER BY book_borrow_cnt DESC
+		LIMIT #{displayPost}, #{postNum}
+
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

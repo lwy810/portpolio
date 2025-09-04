@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.member.mappers.mylibrary">
+	
+	<select id="getMyBorrowedCurrentList" parameterType="hashMap" resultType="org.bookbug.admin.vo.BorrowVO">
+		SELECT
+			br.borrow_id
+			, br.book_id
+			, br.member_id
+			, br.borrow_start
+			, br.borrow_end
+			, br.borrow_state
+			, br.borrow_reg_date
+			, br.borrow_up_date
+			, b.book_title
+			, b.book_thumbnail
+			, b.book_position
+			, b.book_author
+			, b.book_publisher
+			, b.book_publisher_year
+			, b.book_rental_able
+			, m.member_id
+			, m.member_name
+			, m.member_gender
+			, m.member_phone
+			, m.member_zipcode
+			, m.member_address
+		FROM borrow_tbl AS br left JOIN book_tbl AS b
+		ON br.book_id = b.book_id
+			left JOIN member_tbl AS m
+		ON br.member_id = m.member_id
+		where br.borrow_state = '대출중'
+		and br.member_id = #{member_id}
+
+		ORDER BY br.borrow_end ASC
+		LIMIT #{displayPost}, #{postNum}
+
+	</select>
+	
+	<select id="getMyBorrowedList" parameterType="hashMap" resultType="org.bookbug.admin.vo.BorrowVO">
+		SELECT
+			br.borrow_id
+			, br.book_id
+			, br.member_id
+			, br.borrow_start
+			, br.borrow_end
+			, br.borrow_state
+			, br.borrow_reg_date
+			, br.borrow_up_date
+			, b.book_title
+			, b.book_thumbnail
+			, b.book_position
+			, b.book_author
+			, b.book_publisher
+			, b.book_publisher_year
+			, b.book_rental_able
+			, m.member_id
+			, m.member_name
+			, m.member_gender
+			, m.member_phone
+			, m.member_zipcode
+			, m.member_address
+		FROM borrow_tbl AS br left JOIN book_tbl AS b
+		ON br.book_id = b.book_id
+			left JOIN member_tbl AS m
+		ON br.member_id = m.member_id
+		where br.member_id = #{member_id}
+
+		ORDER BY br.borrow_end ASC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<select id="getReservationBookCount" parameterType="String" resultType="int">
+		select count(*) from bookreservation_tbl
+		where member_id = #{member_id}
+	</select>
+	
+	
+	<select id="getReservationRegisterCount" parameterType="String" resultType="int">
+		select count(*) from bookreservation_tbl
+		where book_id = #{book_id}
+	</select>
+	
+	
+	<insert id="reservationRegister"  parameterType="org.bookbug.member.vo.ReservationBookVO">
+		INSERT INTO bookreservation_tbl (
+			reservation_num
+			, member_id
+			, book_id
+			, reservation_date
+		) values (
+			#{reservation_num}
+			, #{member_id}
+			, #{book_id}
+			, now()
+		)
+	</insert>
+	
+
+	<select id="getReservationBookList" parameterType="HashMap" resultType="org.bookbug.member.vo.ReservationBookVO">
+		select
+			r.reservation_num
+			, r.member_id
+			, r.book_id
+			, r.reservation_date
+		
+			, b.book_thumbnail
+			, b.book_title
+			, b.book_subtitle
+			, b.book_category_type
+			, b.book_category
+			, b.book_type
+			, b.book_position
+			, b.book_author
+			, b.book_publisher
+			, b.book_publisher_year
+			, b.book_detail
+			, b.book_isbn
+			, b.book_rental_able
+			
+			, br.borrow_start
+			, br.borrow_end
+			, br.borrow_state
+			, br.borrow_reg_date
+			, br.borrow_up_date
+			
+			from bookreservation_tbl as r 
+				left join book_tbl as b on r.book_id = b.book_id 
+				left join borrow_tbl as br on  r.book_id = br.book_id
+			where r.member_id = #{member_id}
+			<if test='searchType.equals("book_title")'>
+				and b.book_title like concat('%', #{keyword}, '%')
+			</if>
+			<if test='searchType.equals("reservation_date")'>
+				and r.reservation_date = #{keyword}
+			</if>
+			<if test='searchType.equals("borrow_end")'>
+				and .br.borrow_end = #{keyword}
+			</if>
+			
+			ORDER BY br.borrow_end ASC
+			LIMIT #{displayPost}, #{postNum}
+			
+	</select>
+
+	<select id="getInterestedBookCount" parameterType="String" resultType="int">
+		select count(*) from interestedbook_tbl
+		where member_id = #{member_id}
+	</select>
+	
+	<select id="getInterestedRegisterCount" parameterType="String" resultType="int">
+		select count(*) from interestedbook_tbl
+		where book_id = #{book_id}
+	</select>
+
+	<insert id="interestedRegister"  parameterType="org.bookbug.member.vo.InterestedBookVO">
+		INSERT INTO interestedbook_tbl (
+		
+			interested_book_num
+			,	book_id
+			,	member_id
+			,	interested_book_reg_date
+		) values (
+			#{interested_book_num}
+			, #{book_id}
+			, #{member_id}
+			, now()
+		)
+	</insert>
+
+	
+	<select id="getInterestedBookList" parameterType="HashMap" resultType="org.bookbug.member.vo.InterestedBookVO">
+		select
+			i.interested_book_num
+			, i.member_id
+			, i.book_id
+			, i.interested_book_reg_date
+		
+			, b.book_thumbnail
+			, b.book_title
+			, b.book_subtitle
+			, b.book_category_type
+			, b.book_category
+			, b.book_type
+			, b.book_position
+			, b.book_author
+			, b.book_publisher
+			, b.book_publisher_year
+			, b.book_detail
+			, b.book_isbn
+			, b.book_rental_able
+			
+			from interestedbook_tbl as i
+				join book_tbl as b on i.book_id = b.book_id 
+			where i.member_id = #{member_id}
+			<if test='searchType.equals("book_title")'>
+				and b.book_title like concat('%', #{keyword}, '%')
+			</if>
+			
+			ORDER BY  b.book_title ASC
+			LIMIT #{displayPost}, #{postNum}
+			
+	</select>
+
+	<select id="getMyBorrowedCurrentCount" parameterType="String" resultType="int">
+		select count(*) from borrow_tbl
+		where member_id = #{member_id} 
+			and borrow_state = '대출중'
+	</select>
+
+	<select id="getInterestedBookCard" parameterType="HashMap" resultType="org.bookbug.member.vo.InterestedBookVO">
+		select
+			i.interested_book_num
+			, i.member_id
+			, i.book_id
+			, i.interested_book_reg_date
+		
+			, b.book_thumbnail
+			, b.book_title
+			, b.book_subtitle
+			, b.book_category_type
+			, b.book_category
+			, b.book_type
+			, b.book_position
+			, b.book_author
+			, b.book_publisher
+			, b.book_publisher_year
+			, b.book_detail
+			, b.book_isbn
+			, b.book_rental_able
+			
+			from interestedbook_tbl as i
+				join book_tbl as b on i.book_id = b.book_id 
+			where i.member_id = #{member_id}
+			<if test='searchType.equals("book_title")'>
+				and b.book_title like concat('%', #{keyword}, '%')
+			</if>
+			
+			ORDER BY  b.book_title ASC
+			LIMIT 0, 5
+			
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

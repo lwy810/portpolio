@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.admin.mappers.member">
+
+	<select id="idcheck" resultType="org.bookbug.member.vo.MemberVO">
+		SELECT * FROM member_tbl
+		WHERE member_id=#{member_id}
+	</select>
+	
+	<select id="reg-address" resultType="org.bookbug.member.vo.AddressVO">
+		SELECT * 
+		FROM address_tbl 
+		WHERE area3 
+		LIKE concat('%', #{area3}, '%')
+	</select>
+	
+	<insert id="register" parameterType="org.bookbug.member.vo.MemberVO">
+		INSERT INTO member_tbl(
+		member_id
+		, member_pwd
+		, member_name
+		, member_gender
+		, member_phone
+		, member_birthday
+		, member_prefer
+		, member_zipcode
+		, member_address
+		, member_reg_date
+		, member_up_date
+		) VALUES (
+		#{member_id}
+		, #{member_pwd}
+		, #{member_name}
+		, #{member_gender}
+		, #{member_phone}
+		, #{member_birthday}
+		, #{member_prefer}
+		, #{member_zipcode}
+		, #{member_address}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<select id="mypage" resultType="org.bookbug.member.vo.MemberVO">
+		SELECT * FROM member_tbl
+		WHERE member_id = #{member_id}
+	</select>
+
+	<update id="memberModify" parameterType="org.bookbug.member.vo.MemberVO">
+		update member_tbl set 
+			member_name = #{member_name}
+			, member_gender = #{member_gender}
+			, member_zipcode = #{member_zipcode}
+			, member_address = #{member_address}
+			, member_phone = #{member_phone}
+			, member_birthday = #{member_birthday}
+			, member_prefer = #{member_prefer}
+			, member_up_date = now()
+		where member_id = #{member_id}
+	</update>
+
+
+	<delete id="memberDelete">
+		delete from member_tbl
+		where member_id = #{member_id}
+	</delete>
+
+	<update id="borrowCntUp" parameterType="String">
+		UPDATE member_tbl 
+		SET member_borrowCnt = member_borrowCnt + 1
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<update id="reservationCntUp" parameterType="String">
+		UPDATE member_tbl 
+		SET member_reservationCnt = member_reservationCnt + 1
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<update id="interestedCntUp" parameterType="String">
+		UPDATE member_tbl 
+		SET member_interestedCnt = member_interestedCnt + 1
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<select id="getCount" parameterType="hashMap" resultType="int">
+		SELECT count(*) FROM member_tbl
+		<if test="searchType.equals('member_id')"> where member_id LIKE concat('%', #{keyword}, '%') </if>
+		<if test="searchType.equals('member_name')"> where member_name LIKE concat('%', #{keyword}, '%') </if>
+		<if test="searchType.equals('member_phone')"> where member_phone LIKE concat('%', #{keyword}, '%') </if>
+	</select>
+	
+	<select id="getMemberList" parameterType="hashMap" resultType="org.bookbug.member.vo.MemberVO">
+		SELECT * FROM member_tbl
+		<if test="searchType.equals('member_name')"> where member_name LIKE concat('%', #{keyword}, '%') </if>
+		<if test="searchType.equals('member_id')"> where member_id LIKE concat('%', #{keyword}, '%') </if>
+		<if test="searchType.equals('member_phone')"> where member_phone LIKE concat('%', #{keyword}, '%') </if>
+		ORDER BY member_up_date ASC LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.admin.mappers.borrow">
+
+<select id="getBorrowedList" parameterType="hashMap" resultType="org.bookbug.admin.vo.BorrowVO">
+		SELECT
+			br.borrow_id
+			, br.book_id
+			, br.member_id
+			, br.borrow_start
+			, br.borrow_end
+			, br.borrow_state
+			, br.borrow_reg_date
+			, br.borrow_up_date
+			, b.book_title
+			, b.book_position
+			, b.book_author
+			, b.book_publisher
+			, b.book_publisher_year
+			, b.book_rental_able
+			, m.member_id
+			, m.member_name
+			, m.member_gender
+			, m.member_phone
+			, m.member_zipcode
+			, m.member_address
+		FROM borrow_tbl AS br JOIN book_tbl AS b
+		ON br.book_id = b.book_id
+			JOIN member_tbl AS m
+		ON br.member_id = m.member_id
+		<if test='searchType.equals("book_title")'>
+			where b.book_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("member_id")'>
+			where m.member_id = #{keyword}
+		</if>
+		<if test='searchType.equals("member_phone")'>
+			where m.member_phone = #{keyword}
+		</if>
+		
+		ORDER BY br.borrow_id DESC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<select id="getMyBorrowedList" parameterType="hashMap" resultType="org.bookbug.admin.vo.BorrowVO">
+		SELECT
+			br.borrow_id
+			, br.book_id
+			, br.member_id
+			, br.borrow_start
+			, br.borrow_end
+			, br.borrow_state
+			, br.borrow_reg_date
+			, br.borrow_up_date
+			, b.book_title
+			, b.book_thumbnail
+			, b.book_position
+			, b.book_author
+			, b.book_publisher
+			, b.book_publisher_year
+			, b.book_rental_able
+			, m.member_id
+			, m.member_name
+			, m.member_gender
+			, m.member_phone
+			, m.member_zipcode
+			, m.member_address
+		FROM borrow_tbl AS br JOIN book_tbl AS b
+		ON br.book_id = b.book_id
+			JOIN member_tbl AS m
+		ON br.member_id = m.member_id
+		WHERE br.member_id = #{member_id} 
+		and b.book_title like concat('%', #{keyword}, '%')
+		
+		
+		ORDER BY br.borrow_end ASC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	
+	<select id="getCount" parameterType="hashMap" resultType="int">
+		select count(*) 
+		from borrow_tbl AS br JOIN book_tbl AS b
+		ON br.book_id = b.book_id
+			JOIN member_tbl AS m
+		ON br.member_id = m.member_id
+		
+		<if test='searchType.equals("title")'>
+			where b.book_title like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("member_id")'>
+			where br.member_id like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("phone")'>
+			where m.member_phone like concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	
+	<select id="getMemberCount" parameterType="String" resultType="int">
+		select count(*) from borrow_tbl 
+		where member_id LIKE CONCAT('%', #{member_id}, '%')
+	</select>
+	
+	<select id="getMember" parameterType="String" resultType="org.bookbug.member.vo.MemberVO">
+		SELECT * FROM member_tbl WHERE member_name LIKE concat('%', #{member_name}, '%')
+	</select>
+	<select id="getBook" parameterType="String" resultType="org.bookbug.book.vo.BookVO">
+		SELECT * FROM book_tbl WHERE book_title LIKE concat('%', #{book_title}, '%')
+	</select>
+	
+	<insert id="register" parameterType="org.bookbug.admin.vo.BorrowVO">
+		INSERT INTO borrow_tbl(
+		member_id
+		, book_id
+		, borrow_start
+		, borrow_end
+		, borrow_state
+		, borrow_reg_date
+		, borrow_up_date
+		) VALUES (
+		#{member_id}
+		, #{book_id}
+		, now()
+		, (SELECT ADDDATE(NOW(), 14))
+		, #{borrow_state}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<update id="getUpdateState" parameterType="hashMap">
+		UPDATE borrow_tbl 
+		SET	borrow_state = #{borrow_state}
+		,borrow_up_date = now()
+		WHERE borrow_id=#{borrow_id}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

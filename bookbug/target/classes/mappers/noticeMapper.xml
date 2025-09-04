@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.gettoknow.mappers.notice">
+	
+	<insert id="register" parameterType="org.bookbug.board.vo.NoticeVO">
+		INSERT INTO notice_tbl(
+		notice_writer
+		,notice_type
+		, notice_title
+		, notice_content
+		, notice_thumbnail
+		, notice_reg_date
+		, notice_up_date
+		) VALUES (
+		#{notice_writer}
+		,#{notice_type}
+		, #{notice_title}
+		, #{notice_content}
+		, #{notice_thumbnail}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<select id="getNoticeList" parameterType="hashMap" resultType="org.bookbug.board.vo.NoticeVO">
+		SELECT * FROM notice_tbl
+		<if test='searchType.equals("title")'>
+			WHERE notice_title LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("type")'>
+			WHERE notice_type LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("writer")'>
+			WHERE notice_writer LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("content")'>
+			WHERE notice_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		
+		ORDER BY notice_no DESC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<select id="getNoticeCount" parameterType="hashMap" resultType="int">
+			select count(*) from notice_tbl
+			
+			<if test='searchType.equals("title")'>
+				where notice_title like concat('%', #{keyword}, '%')
+			</if>
+			
+			<if test='searchType.equals("type")'>
+				where notice_type like concat('%', #{keyword}, '%')
+			</if>
+			
+			<if test='searchType.equals("writer")'>
+				where notice_writer like concat('%', #{keyword}, '%')
+			</if>
+			
+			<if test='searchType.equals("content")'>
+				where notice_content like concat('%', #{keyword}, '%')
+			</if>
+	</select>
+	
+	<select id="getView" parameterType="int" resultType="org.bookbug.board.vo.NoticeVO">
+		SELECT * FROM notice_tbl WHERE notice_no = #{notice_no}
+	</select>
+	
+	<delete id="getDeleteView" parameterType="int">
+		DELETE FROM notice_tbl
+		WHERE notice_no = #{notice_no}
+	</delete>
+	
+	<update id="getUpdateNotice" parameterType="org.bookbug.board.vo.NoticeVO">
+		UPDATE notice_tbl 
+		SET	notice_title = #{notice_title}
+		,notice_content = #{notice_content}
+		,notice_thumbnail = #{notice_thumbnail}
+		,notice_up_date = now()
+		WHERE notice_no =#{notice_no}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

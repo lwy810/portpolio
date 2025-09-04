@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.member.mappers.board">
+
+	<select id="getBoardList" parameterType="hashMap" resultType="org.bookbug.board.vo.BoardVO">
+		SELECT * FROM board_tbl
+		<if test='searchType.equals("title")'>
+			WHERE article_title LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("content")'>
+			WHERE article_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("title_content")'>
+			WHERE article_title LIKE concat('%', #{keyword}, '%')
+			or article_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		
+		ORDER BY article_num DESC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<select id="getCount" parameterType="hashMap" resultType="int">
+			select count(*) from board_tbl
+			
+			<if test='searchType.equals("title")'>
+				where article_title like concat('%', #{keyword}, '%')
+			</if>
+			
+			<if test='searchType.equals("content")'>
+				where article_content like concat('%', #{keyword}, '%')
+			</if>
+			
+			<if test='searchType.equals("title_content")'>
+				where article_title like concat('%', #{keyword}, '%')
+					or article_content like concat('%', #{keyword}, '%')
+			</if>
+	</select>
+	
+	<select id="getBoardOne" parameterType="int" resultType="org.bookbug.board.vo.BoardVO">
+		SELECT * FROM board_tbl WHERE article_num = #{article_num}
+	</select>
+	
+	
+	<insert id="register" parameterType="org.bookbug.board.vo.BoardVO">
+		INSERT INTO board_tbl(
+		article_writer
+		, article_title
+		, article_content
+		, article_reg_date
+		, article_up_date
+		) VALUES (
+		#{article_writer}
+		, #{article_title}
+		, #{article_content}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board_tbl
+		WHERE article_num = #{article_num}
+	</delete>
+	
+	<update id="update" parameterType="org.bookbug.board.vo.BoardVO">
+		UPDATE board_tbl 
+		SET	article_title = #{article_title}
+		,article_content = #{article_content}
+		,article_up_date = now()
+		WHERE article_num=#{article_num}
+	</update>
+	
+	<update id="upCount" parameterType="int">
+		UPDATE board_tbl 
+		SET article_views = article_views + 1
+		WHERE article_num = #{article_num}
+	</update>
+	
+	<update id="downReplyCnt" parameterType="org.bookbug.board.vo.BoardVO">
+		update board_tbl set
+		reply_cnt = (SELECT COUNT(*) 
+		FROM reply_tbl AS r JOIN board_tbl AS b
+		ON r.article_num = b.article_num WHERE b.article_num=#{article_num})
+		WHERE article_num = #{article_num};
+	</update>
+
+	<update id="upReplyCnt" parameterType="org.bookbug.board.vo.BoardVO">
+		update board_tbl set
+		reply_cnt = (SELECT COUNT(*) 
+		FROM reply_tbl AS r JOIN board_tbl AS b
+		ON r.article_num = b.article_num WHERE b.article_num=#{article_num})
+		WHERE article_num = #{article_num};
+	</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

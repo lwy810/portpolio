@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.member.mappers.profile">
+	
+	<insert id="registerProfile" parameterType="org.bookbug.member.vo.ProfileVO">
+		INSERT INTO profile_tbl(
+		profile_thumbnail
+		, member_id
+		, profile_reg_date
+		, profile_up_date
+		) VALUES (
+		#{profile_thumbnail}
+		, #{member_id}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<select id="getProfile" parameterType="String" resultType="org.bookbug.member.vo.ProfileVO">
+		SELECT * FROM profile_tbl
+		WHERE member_id = #{member_id}
+	</select>
+
+	<update id="getProfileUpdate" parameterType="org.bookbug.member.vo.ProfileVO">
+		update profile_tbl set 
+			profile_thumbnail = #{profile_thumbnail}
+			, profile_up_date = now()
+		where member_id = #{member_id}
+	</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

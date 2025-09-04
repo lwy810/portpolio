@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.member.mappers.advice">
+
+	<select id="getAdList" parameterType="hashMap" resultType="org.bookbug.member.vo.AdviceVO">
+		SELECT * FROM advice_tbl
+		<if test='searchType.equals("title")'>
+			WHERE advice_title LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("category")'>
+			WHERE advice_type LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("client")'>
+			WHERE advice_client LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("content")'>
+			WHERE advice_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("title_content")'>
+			WHERE advice_title LIKE concat('%', #{keyword}, '%')
+			or advice_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		
+		ORDER BY advice_no DESC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<select id="getCount" parameterType="hashMap" resultType="int">
+			select count(*) from advice_tbl
+			
+		<if test='searchType.equals("title")'>
+			WHERE advice_title LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("client")'>
+			WHERE advice_client LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("content")'>
+			WHERE advice_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("title_content")'>
+			WHERE advice_title LIKE concat('%', #{keyword}, '%')
+			or advice_content LIKE concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	
+	<select id="getOneInquiry" parameterType="int" resultType="org.bookbug.member.vo.AdviceVO">
+		SELECT * FROM advice_tbl 
+		WHERE advice_no = #{advice_no}
+	</select>
+	
+	
+	<insert id="register" parameterType="org.bookbug.member.vo.AdviceVO">
+		INSERT INTO advice_tbl(
+		advice_client
+		, advice_type
+		, advice_thumbnail
+		, advice_title
+		, advice_content
+		, advice_reg_date
+		, advice_up_date
+		) VALUES (
+		#{advice_client}
+		, #{advice_type}
+		, #{advice_thumbnail}
+		, #{advice_title}
+		, #{advice_content}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<select id="getMyList" parameterType="hashMap" resultType="org.bookbug.member.vo.AdviceVO">
+		SELECT * FROM advice_tbl
+		WHERE advice_client = #{advice_client}
+		ORDER BY advice_no DESC
+		LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<select id="getMyCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM advice_tbl
+		WHERE advice_client = #{advice_client}
+	</select>
+	
+	<delete id="deleteOne" parameterType="int">
+		DELETE FROM advice_tbl
+		WHERE advice_no = #{advice_no}
+	</delete>
+	
+	<update id="downReplyCnt" parameterType="org.bookbug.member.vo.AdviceVO">
+		update advice_tbl set
+		reply_cnt = (SELECT COUNT(*) 
+		FROM answer_tbl AS a JOIN advice_tbl AS ad
+		ON a.advice_no = ad.advice_no WHERE a.advice_no=#{advice_no})
+		WHERE advice_no = #{advice_no};
+	</update>
+	
+	<update id="upReplyCnt" parameterType="int">
+		update advice_tbl set
+		reply_cnt = (SELECT COUNT(*) 
+		FROM answer_tbl AS a JOIN advice_tbl AS ad
+		ON a.advice_no = ad.advice_no WHERE a.advice_no=#{advice_no})
+		WHERE advice_no = #{advice_no};
+	</update>
+	
+	<update id="updateInquiry" parameterType="org.bookbug.member.vo.AdviceVO">
+		UPDATE advice_tbl SET
+		advice_title = #{advice_title}
+		,advice_type = #{advice_type}
+		,advice_status = #{advice_status}
+		,advice_content = #{advice_content}
+		,advice_thumbnail = #{advice_thumbnail}
+		,advice_up_date = now()
+		WHERE advice_no=#{advice_no}
+	</update>
+	
+	<update id="updateMemberInquiry" parameterType="org.bookbug.member.vo.AdviceVO">
+		UPDATE advice_tbl SET
+		advice_title = #{advice_title}
+		,advice_content = #{advice_content}
+		,advice_thumbnail = #{advice_thumbnail}
+		,advice_up_date = now()
+		WHERE advice_no=#{advice_no}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

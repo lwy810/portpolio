@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.member.mappers.suggestion">
+
+	<insert id="register" parameterType="org.bookbug.member.vo.SuggestionVO">
+		insert into suggestion_tbl (
+		suggestion_proposer
+		, suggestion_thumbnail
+		, suggestion_email
+		, suggestion_booktitle
+		, suggestion_author
+		, suggestion_publisher
+		, suggestion_publisher_year
+		, suggestion_isbn
+		, suggestion_price
+		, suggestion_notification
+		, suggestion_reg_date
+		) values (
+		#{suggestion_proposer}
+		, #{suggestion_thumbnail}
+		, #{suggestion_email}
+		, #{suggestion_booktitle}
+		, #{suggestion_author}
+		, #{suggestion_publisher}
+		, #{suggestion_publisher_year}
+		, #{suggestion_isbn}
+		, #{suggestion_price}
+		, #{suggestion_notification}
+		, now()
+		)
+	</insert>
+
+
+	<select id="getOneRecord" parameterType="int" resultType="org.bookbug.member.vo.SuggestionVO">
+		SELECT * FROM suggestion_tbl 
+		WHERE suggestion_no = #{suggestion_no}
+	</select>
+
+	<select id="getOneUpdate" parameterType="org.bookbug.member.vo.SuggestionVO">
+		UPDATE suggestion_tbl SET 
+		suggestion_status = #{suggestion_status}
+		,suggestion_proposer = #{suggestion_proposer}
+		,suggestion_booktitle = #{suggestion_booktitle}
+		,suggestion_author = #{suggestion_author}
+		,suggestion_publisher = #{suggestion_publisher}
+		,suggestion_publisher_year = #{suggestion_publisher_year}
+		,suggestion_isbn = #{suggestion_isbn}
+		,suggestion_price = #{suggestion_price}
+		,suggestion_notification = #{suggestion_notification}
+		,suggestion_thumbnail = #{suggestion_thumbnail}
+		WHERE suggestion_no = #{suggestion_no}
+	</select>
+	
+	<select id="getSgList" parameterType="hashMap" resultType="org.bookbug.member.vo.SuggestionVO">
+		select * from suggestion_tbl
+		
+		<if test='searchType.equals("booktitle")'>
+			where suggestion_booktitle like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("proposer")'>
+			where suggestion_proposer like concat('%', #{keyword}, '%')
+		</if>
+		
+		order by suggestion_no	DESC
+		limit #{displayPost}, #{postNum} 
+	</select>
+	
+	<select id="getCount" parameterType="hashMap" resultType="int">
+		select count(*) from suggestion_tbl
+		
+		<if test='searchType.equals("booktitle")'>
+			where suggestion_booktitle like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("proposer")'>
+			where suggestion_proposer like concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	
+	<select id="getMyCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM suggestion_tbl
+		WHERE suggestion_proposer = #{suggestion_proposer}
+	</select>
+	
+	<select id="getMyList" parameterType="hashMap" resultType="org.bookbug.member.vo.SuggestionVO">
+		SELECT * FROM suggestion_tbl
+		WHERE suggestion_proposer=#{suggestion_proposer}
+		order by suggestion_no	DESC
+		limit #{displayPost}, #{postNum} 
+	</select>
+	
+	<update id="updateStatus" parameterType="hashMap">
+		UPDATE suggestion_tbl SET 
+		suggestion_status = #{suggestion_status}
+		WHERE suggestion_no = #{suggestion_no}
+	</update>	
+	
+	<delete id="deleteRow" parameterType="int">
+		DELETE FROM suggestion_tbl 
+		WHERE suggestion_no = #{suggestion_no}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

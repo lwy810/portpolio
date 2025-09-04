@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/*============ banner ============*/
+h2 {color:#FDF4D1; padding-top:150px;}
+h3 {margin-top:100px;}
+* {list-style:none;}
+
+
+/*============ btn ============*/
+.btn {
+	height:100%; cursor:pointer; color:black; line-height: 20px;
+	background: #fdf4d1;
+	border:0; border-radius:0; font-size:14px;
+	box-shadow: inset 0px 0px 0 3px #d9cc8f;
+	transition:all 0.4s ease-in;
+	font-family:"SUIT-Bold";
+	font-weight: bolder;
+}
+
+.btn:hover {background:#5a1375; color:#fff;}
+.btn-private {background:#ff00c64d; color:#111; width: 140px;}
+.btn-private:hover {background:#b30059; color:#f8e7f1;}
+.btn-public {background:#d9cc8f6b; color:#111;}
+.btn-register {background:#fdf4d1; color:#111;}
