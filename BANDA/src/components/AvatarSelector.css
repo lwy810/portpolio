@@ -1,0 +1,64 @@
+.avatar-selector-container {
+  background-color: #111;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-selector-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.avatar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.avatar-card {
+  background: #222;
+  border: 2px solid #444;
+  border-radius: 12px;
+  padding: 12px;
+  width: 200px; 
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, border 0.2s;
+}
+
+.avatar-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.avatar-card p {
+  margin: 0;
+  font-size: 14px;
+  color: white;
+}
+
+.avatar-card:hover {
+  transform: scale(1.05);
+  border: 2px solid #4caf50;
+}
+
+.avatar-card.selected {
+  border: 2px solid #4caf50;
+}
+
+.avatar-card.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.avatar-grid .avatar-card:nth-child(5) {
+  margin-bottom: 50px;
+}

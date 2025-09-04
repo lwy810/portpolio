@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+  min-height: 100vh;
+}
+
+.side_bar, .main_board {height: 2500px;}
+
+button {cursor: pointer;}
+
+/* nav바 */
+nav {
+  width: 100vw;
+  height: 80px;
+  background: #010306;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.container > li {height: 100%;}
+.nav_bar {width:300px;}
+.nav_bar > button {background:#010306;}
+.nav_bar > button > span {
+  font-size: 24px; line-height: 70px; color:white;
+  cursor: pointer;
+}
+
+.login_bar {
+  display: flex; align-items: center;
+  width:450px; margin-right: 25px; 
+  text-align: right;
+}
+.login_bar > button > span, .nav_bar > li > button > span {background: none;}
+.login_bar > button {
+  display: inline-block;
+  height: 55px; padding:0 10px; background: white; 
+  border: 3px solid black;
+  transition: all 0.4s ease-in;
+}
+
+.login_bar > button:nth-child(3){margin-right:10px;}
+.login_bar > button > span {
+  display: inline-block;
+  color: #4f5255; transition: all 0.4s ease-in;}
+.login_bar > button:hover {background: skyblue;}
+.login_bar > button:hover > span {color: black;}
+
+.login_bar > p {
+  height: 50px; margin-right:10px;
+  background: white; color: black;
+  border-radius: 5px; line-height: 50px; text-align:center;
+}
+.login_bar > p:first-child {width:80px;}
+.login_bar > p:nth-child(2) {width:170px;}
+
+
+
+/* section */
+section {
+  display: flex;
+  width: calc( 100vw - 240px ); height: 100vh;
+}
+
+.side_bar {
+  position:relative;
+  width: 240px; height: 2500px;
+  background: #212529;
+  z-index: 100;
+}
+
+#main_menu {
+  padding: 30px;
+  width: 240px;
+  color: white;
+}
+
+#main_menu > li {margin-bottom: 30px;}
+.main_menu_title {
+  margin-bottom: 10px; 
+  font-size:20px; font-weight: 400;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s ease-in;
+}
+.main_menu_title:hover {color: #4f5255;}
+
+.sub_menu > li {
+  width: 100%;
+  margin-bottom: 10px; padding-left: 30px;
+  color: white;
+}
+
+.sub_menu > li > button {
+  background: none;
+  font-size: 15px;
+  color:white;
+}
+
+
+.main_board {
+  flex-grow: 1; /* 남은 공간을 모두 차지 */
+  background: white;
+}
+
+.main_board > div {
+  width: calc( 100vw - 240px );
+}
+
+
+h2 {
+  color:black;
+  font-size: 30px;
+}
+
+.tab-nav {
+  background: none;
+}
+
+.bottom {
+  position: absolute;
+  width: 10px;
+  background: red;
+  bottom: 0;
+  z-index: 999999;
+}

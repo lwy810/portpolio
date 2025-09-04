@@ -1,0 +1,242 @@
+/* ProductRegister.css */
+
+.product-register-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.product-register-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.success-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 40px;
+}
+
+.success-card {
+  background-color: white;
+  border-radius: 16px;
+  margin-top: 80px;
+  padding: 60px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  height: 500px;
+}
+
+.success-icon {
+  font-size: 80px;
+  color: #10b981;
+  margin-bottom: 20px;
+}
+
+.success-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #10b981;
+  margin-bottom: 16px;
+}
+
+.success-message {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.header-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0;
+}
+
+.back-button {
+  padding: 12px 24px;
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #4b5563;
+}
+
+.error-message {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.form-field {
+  display: block;
+}
+
+.form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.form-label.category {
+  margin-bottom: 12px;
+}
+
+.required {
+  color: #ef4444;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #3b82f6;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.category-button {
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.category-button:not(.selected) {
+  background-color: #f8fafc;
+  color: #374151;
+}
+
+.category-button.selected {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.category-button:not(.selected):hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.category-selected {
+  font-size: 14px;
+  color: #10b981;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.submit-section {
+  margin-top: 40px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 18px;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-button:not(:disabled) {
+  background-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.submit-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.submit-button:not(:disabled):hover {
+  background-color: #2563eb;
+}
+
+.sql-preview {
+  margin-top: 32px;
+  padding: 20px;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.sql-preview-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 12px;
+  margin: 0;
+}
+
+.sql-code {
+  background-color: #1e293b;
+  color: #10b981;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: monospace;
+  overflow-x: auto;
+  line-height: 1.5;
+}

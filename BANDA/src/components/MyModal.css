@@ -1,0 +1,36 @@
+/* 기본 상태 (숨겨진 상태) */
+.mandala-list-container {
+  position: fixed;
+  bottom: -70%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  z-index: 1000;
+  
+  /* 이 부분이 핵심입니다. */
+  opacity: 0; /* 투명하게 만듭니다. */
+  pointer-events: none; /* 클릭을 막습니다. */
+  transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out; /* 트랜지션 적용 */
+}
+
+/* 활성화 상태 (보이는 상태) */
+.mandala-list-container.active {
+  opacity: 1; /* 불투명하게 만들어 보이게 합니다. */
+  pointer-events: auto; /* 클릭을 허용합니다. */
+  bottom: -40.5%; /* 화면 위로 올라옵니다. */
+}
+
+
+
+
+
+
+
+
+
+
+
+
